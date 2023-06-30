@@ -1,0 +1,28 @@
+{%  extends "base.html"  %}
+{%  load thumbnail  %}
+
+{%  block title  %}homepage{%  endblock  %}
+
+
+
+{%  block body  %}
+
+<a href="{% url 'feed:post' %}" class="border mx-auto px-2 rounded-md ml-3">Add a new post &rarr;</a>
+<div class="grid gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+    {% for post in posts %}
+        <a href="{% url 'feed:detail' post.id %}" class='p-6 bg-white w-full block'>
+            <div class='bg-gray-50 shadow-lg border rounded-md my-4'>
+                <div class='mx-auto py-4 px-6 flex-col lg:items-center lg:py-8 lg:px-8'>
+
+                    {% thumbnail post.image "100x100" crop="center" as im %}
+                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                    {% endthumbnail %}
+
+                    <h3>{{ post.text }}</h3>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+
+{%  endblock  %}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%  block title  %}Default Title{%  endblock  %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+    </style>
+
+</head>
+<body class="px-3">
+    {% block nav %}{% include 'includes/navbar.html' %}{% endblock nav %}
+    {% if messages %}
+    <ul class="messages text-white float-right bg-gray-600 px-4 py-2 mr-3">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }} &nbsp;
+            <svg class="h-6 w-6 fill-sky-100 stroke-sky-500 stroke-2 float-right" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="11"></circle>
+            <path d="m8 13 2.165 2.165a1 1 0 0 0 1.521-.126L16 9" fill="none"></path>
+          </svg></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+
+    {%  block body  %}{%  endblock %}
+
+<script src="https://flowbite.com/docs/flowbite.min.js?v=1.6.6a"></script>
+
+</body>
+</html>
